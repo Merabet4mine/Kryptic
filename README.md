@@ -285,4 +285,6 @@ This package provides the functionality of a secret (symmetric) key generator. [
   ```
 
   
+  
+  I hope it is a useful library for Java and Kotlin programmers.
 
