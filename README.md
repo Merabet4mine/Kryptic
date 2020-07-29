@@ -272,7 +272,7 @@ This package provides the functionality of a secret (symmetric) key generator. [
 | publicKey          | ByteArray ***OR*** String<br>(public key)   | PublicKey?                                                   |
 | privateKey         | ByteArray ***OR*** String<br/>(private key) | PrivateKey?                                                  |
 * ##### `Code`
-                                             ```kotlin
+                                         ```kotlin
 val kpair = KPair("algorithm name")
   // OR you can access to algorithm by KPair.Name
   // Algorithms: {DSA, DiffieHellman, EC, RSA, RSASSA, RSASSA, X25519, X448, XDH}  
@@ -282,6 +282,3 @@ val kpair = KPair("algorithm name")
   key = kpair.keyPairAsByteArray() // return key as Pair<ByteArray, ByteArray>?
   key = kpair.keyPairAsString() // return key as Pair<String, String>?
   ```
-  
-  
-
