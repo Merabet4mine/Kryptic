@@ -88,9 +88,9 @@ A cryptographic hash function is a mathematical [algorithm](https://en.wikipedia
 
 #### *HashWithoutKey*
 
-| Method                                                    | Args type                 | Return type |
-| --------------------------------------------------------- | ------------------------- | ----------- |
-| invoke *(get hash)*<br>kotlin code: hashObj**(**data**)** | ByteArray ***OR*** String | String      |
+| Method                                                 | Args type                 | Return type |
+| ------------------------------------------------------ | ------------------------- | ----------- |
+| invoke *(get hash)*<br>kotlin code: hashObj **(data)** | ByteArray ***OR*** String | String      |
 
 #### *HashWithKey*
 
