@@ -231,15 +231,18 @@ The Signatures class is used to provide applications the functionality of a digi
 
 This package provides the functionality of a secret (symmetric) key generator. [KeyGenerator](https://javadoc.scijava.org/Java7/javax/crypto/KeyGenerator.html) and [KeyPairGenerator](https://javadoc.scijava.org/Java7/java/security/KeyPairGenerator.html).
 
-* ##### `KGene`
+#### *KGene*
 
-  | Method    | Args type                 | Return type |
-  | --------- | ------------------------- | ----------- |
-  | invoke    | String (*algorithm name*) | *KGene?*    |
-  | invoke    | Int (Key size)            | *KGene?*    |
-  | secretKey | /                         | SecretKey?  |
-  | byteArray | /                         | ByteArray?  |
-  | string    | /                         | String      |
+
+| Method    | Args type                 | Return type |
+| --------- | ------------------------- | ----------- |
+| invoke    | String (*algorithm name*) | *KGene?*    |
+| invoke    | Int (Key size)            | *KGene?*    |
+| secretKey | /                         | SecretKey?  |
+| byteArray | /                         | ByteArray?  |
+| string    | /                         | String      |
+
+* ##### `Code`
 
   ```kotlin
   val kgene = KGene("algorithm name")
@@ -255,20 +258,22 @@ This package provides the functionality of a secret (symmetric) key generator. [
   key = KGene.AES(keySize).string() // return key as String
   ```
 
-* ##### `KPair`
+  
 
-  | Method             | Args type                                   | Return type                                                  |
-  | ------------------ | ------------------------------------------- | ------------------------------------------------------------ |
-  | invoke             | String (*algorithm name*)                   | *KPair?*                                                     |
-  | invoke             | Int (Key size)                              | *KPair?*                                                     |
-  | keyPair            | /                                           | KeyPair?                                                     |
-  | keyPairAsByteArray | /                                           | **Pair**<ByteArray, ByteArray>?<br>*Pair*(`publicKey`, `privateKey`) |
-  | keyPairAsString    | /                                           | **Pair**<String, String>?<br/>*Pair*(`publicKey`, `privateKey`) |
-  | publicKey          | ByteArray ***OR*** String<br>(public key)   | PublicKey?                                                   |
-  | privateKey         | ByteArray ***OR*** String<br/>(private key) | PrivateKey?                                                  |
+#### *KPair*
 
-  ```kotlin
-  val kpair = KPair("algorithm name")
+| Method             | Args type                                   | Return type                                                  |
+| ------------------ | ------------------------------------------- | ------------------------------------------------------------ |
+| invoke             | String (*algorithm name*)                   | *KPair?*                                                     |
+| invoke             | Int (Key size)                              | *KPair?*                                                     |
+| keyPair            | /                                           | KeyPair?                                                     |
+| keyPairAsByteArray | /                                           | **Pair**<ByteArray, ByteArray>?<br>*Pair*(`publicKey`, `privateKey`) |
+| keyPairAsString    | /                                           | **Pair**<String, String>?<br/>*Pair*(`publicKey`, `privateKey`) |
+| publicKey          | ByteArray ***OR*** String<br>(public key)   | PublicKey?                                                   |
+| privateKey         | ByteArray ***OR*** String<br/>(private key) | PrivateKey?                                                  |
+* ##### `Code`
+                                             ```kotlin
+val kpair = KPair("algorithm name")
   // OR you can access to algorithm by KPair.Name
   // Algorithms: {DSA, DiffieHellman, EC, RSA, RSASSA, RSASSA, X25519, X448, XDH}  
   
@@ -277,6 +282,6 @@ This package provides the functionality of a secret (symmetric) key generator. [
   key = kpair.keyPairAsByteArray() // return key as Pair<ByteArray, ByteArray>?
   key = kpair.keyPairAsString() // return key as Pair<String, String>?
   ```
-
+  
   
 
