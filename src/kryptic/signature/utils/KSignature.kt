@@ -1,5 +1,4 @@
 package kryptic.signature.utils
-import java.nio.charset.Charset
 import kryptic.generator.KPair
 import java.security.Signature
 import kryptic.utils.Kryptic
@@ -20,7 +19,7 @@ abstract class KSignature : Kryptic {
     fun sign(data:ByteArray) : Pair<ByteArray, KeyPair>? {
         return try {
             val signature = Signature.getInstance(sig_algorithm)
-            val keyPair = KPair(key_algorithm)?.generate() ?: return null
+            val keyPair = KPair(key_algorithm)?.keyPair() ?: return null
             signature.initSign(keyPair.private)
             signature.update(data)
             val digitalSignature = signature.sign()
@@ -33,7 +32,7 @@ abstract class KSignature : Kryptic {
         return sign((data.toByteArray()))
     }
 
-    fun sign_(data:ByteArray) : Triple<String, String, String>? {
+    fun signToString(data:ByteArray) : Triple<String, String, String>? {
         val pair = sign(data) ?: return null
         val signature = String64(pair.first)
         val publicKey = String64(pair.second.public.encoded)
@@ -41,8 +40,8 @@ abstract class KSignature : Kryptic {
         return Triple(signature, publicKey, privateKey)
     }
 
-    fun sign_(data:String) : Triple<String, String, String>? {
-        return sign_(data.toByteArray())
+    fun signToString(data:String) : Triple<String, String, String>? {
+        return signToString(data.toByteArray())
     }
 
 

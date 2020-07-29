@@ -52,7 +52,7 @@ class KPair : Kryptic {
         return this
     }
 
-    fun generate() : KeyPair? {
+    fun keyPair() : KeyPair? {
         return try {
             val keyPairGenerator = KeyPairGenerator.getInstance(algorithm)
             if (keySize != null) keyPairGenerator.initialize(keySize!!)
@@ -62,13 +62,13 @@ class KPair : Kryptic {
         catch (e:Exception){ except(e.message, null) }
     }
 
-    fun generatePairByteArray() : Pair<ByteArray, ByteArray>? {
-        val keyPair : KeyPair = generate() ?: return null
+    fun keyPairAsByteArray() : Pair<ByteArray, ByteArray>? {
+        val keyPair : KeyPair = keyPair() ?: return null
         return Pair(keyPair.public.encoded, keyPair.private.encoded)
     }
 
-    fun generatePairString() : Pair<String, String>? {
-        val pair = generatePairByteArray() ?: return null
+    fun keyPairAsString() : Pair<String, String>? {
+        val pair = keyPairAsByteArray() ?: return null
         val public = String64(pair.first)
         val private = String64(pair.second)
         return Pair(public, private)
