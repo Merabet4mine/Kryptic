@@ -1,4 +1,6 @@
-![cover](cover.png)
+![cover](logo.png)
+
+
 
 # Kryptic
 
