@@ -10,14 +10,10 @@ import java.security.KeyPairGenerator
 import java.security.spec.X509EncodedKeySpec
 import java.security.spec.PKCS8EncodedKeySpec
 
-class KPair : Kryptic {
+class KPair private
+constructor(private var algorithm: String) : Kryptic() {
 
-    private var algorithm = ""
-    var keySize : Int?=null; private set
-
-    private constructor(algorithm:String) {
-        this.algorithm = algorithm
-    }
+    var keySize: Int? = null; private set
 
     companion object {
 
@@ -47,12 +43,13 @@ class KPair : Kryptic {
 
     }
 
-    operator fun invoke(key_size:Int): KPair {
+    fun size(key_size:Int): KPair {
         this.keySize = key_size
         return this
     }
 
-    fun keyPair() : KeyPair? {
+
+    fun pairKey() : KeyPair? {
         return try {
             val keyPairGenerator = KeyPairGenerator.getInstance(algorithm)
             if (keySize != null) keyPairGenerator.initialize(keySize!!)
@@ -61,23 +58,21 @@ class KPair : Kryptic {
         }
         catch (e:Exception){ except(e.message, null) }
     }
-
-    fun keyPairAsByteArray() : Pair<ByteArray, ByteArray>? {
-        val keyPair : KeyPair = keyPair() ?: return null
+    fun pairBytes(): Pair<ByteArray, ByteArray>? {
+        val keyPair : KeyPair = pairKey() ?: return null
         return Pair(keyPair.public.encoded, keyPair.private.encoded)
     }
-
-    fun keyPairAsString() : Pair<String, String>? {
-        val pair = keyPairAsByteArray() ?: return null
+    fun pairString(): Pair<String, String>? {
+        val pair = pairBytes() ?: return null
         val public = String64(pair.first)
         val private = String64(pair.second)
         return Pair(public, private)
     }
 
+
     fun publicKey(public_key:String): PublicKey? {
         return this.publicKey(Bytes64(public_key, false))
     }
-
     fun publicKey(public_key:ByteArray): PublicKey? {
         val keySpec = X509EncodedKeySpec(public_key)
         val keyFactory = KeyFactory.getInstance(algorithm)
@@ -87,7 +82,6 @@ class KPair : Kryptic {
     fun privateKey(private_key:String): PrivateKey? {
         return privateKey(Bytes64(private_key, false))
     }
-
     fun privateKey(private_key:ByteArray): PrivateKey? {
         val keySpec = PKCS8EncodedKeySpec(private_key)
         val keyFactory = KeyFactory.getInstance(algorithm)

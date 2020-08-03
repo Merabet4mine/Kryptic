@@ -6,14 +6,10 @@ import javax.crypto.KeyGenerator
 import java.security.SecureRandom
 
 
-class KGene : Kryptic {
+class KGene private
+constructor(private var algorithm: String) : Kryptic() {
 
-    private var algorithm = ""
     private var keySize : Int? = null
-
-    private constructor(algorithm:String) {
-        this.algorithm = algorithm
-    }
 
     companion object {
 
@@ -62,10 +58,14 @@ class KGene : Kryptic {
         val SunTlsPrf                get() = KGene("SunTlsPrf")
         val SunTlsRsaPremasterSecret get() = KGene("SunTlsRsaPremasterSecret")
 
-
     }
 
-    fun secretKey(): SecretKey? {
+    fun size(key_size:Int): KGene {
+        this.keySize = key_size
+        return this
+    }
+
+    fun keySecret(): SecretKey? {
         return try {
             val keyGen = KeyGenerator.getInstance(algorithm)
             val secRandom = SecureRandom()
@@ -75,18 +75,12 @@ class KGene : Kryptic {
         }
         catch (e:Exception){ except(e.message, null) }
     }
-
-    fun byteArray(): ByteArray? {
-        return secretKey()?.encoded
+    fun keyBytes (): ByteArray? {
+        return keySecret()?.encoded
     }
-
-    fun string(): String {
-        return String64(byteArray())
-    }
-
-    operator fun invoke(key_size:Int): KGene {
-        this.keySize = key_size * 8
-        return this
+    fun keyString(): String {
+        return String64(keyBytes())
     }
 
 }
+
