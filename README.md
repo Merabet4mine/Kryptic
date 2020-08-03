@@ -1,4 +1,4 @@
-![cover](logo.png)
+![cover](logo.svg)
 
 
 
@@ -107,7 +107,7 @@ A cryptographic hash function is a mathematical [algorithm](https://en.wikipedia
 - ##### `MD`
 
   ```kotlin
-  val data = "ABCD" // String or ByteArray
+  val data = ... // String or ByteArray
   MD._2(data) // return String
   MD._5(data)
   // OR
@@ -148,8 +148,8 @@ A cryptographic hash function is a mathematical [algorithm](https://en.wikipedia
   val hmacMd5 = HMac.MD5
   println(hmacMd5(key).bytes(data)) // return ByteArray
   // OR 
-  HMac.MD5(key).bytes(data) // return String
-  HMac.SHA1(key).string(data)    
+  HMac.MD5(key).bytes(data) 
+  HMac.SHA1(key).string(data) // return String    
   HMac.SHA224(key).string(data)     
   HMac.SHA256(key).string(data)     
   HMac.SHA512(key).string(data) 
@@ -266,9 +266,9 @@ This package provides the functionality of a secret (symmetric) key generator. [
 | ------------------ | ------------------------------------------- | ------------------------------------------------------------ |
 | invoke             | String (*algorithm name*)                   | *KPair?*                                                     |
 | invoke             | Int (Key size)                              | *KPair?*                                                     |
-| keyPair            | /                                           | KeyPair?                                                     |
-| keyPairAsByteArray | /                                           | **Pair**<ByteArray, ByteArray>?<br>*Pair*(`publicKey`, `privateKey`) |
-| keyPairAsString    | /                                           | **Pair**<String, String>?<br/>*Pair*(`publicKey`, `privateKey`) |
+| pairKey            | /                                           | KeyPair?                                                     |
+| pairBytes          | /                                           | **Pair**<ByteArray, ByteArray>?<br>*Pair*(`publicKey`, `privateKey`) |
+| pairString         | /                                           | **Pair**<String, String>?<br/>*Pair*(`publicKey`, `privateKey`) |
 | publicKey          | ByteArray ***OR*** String<br>(public key)   | PublicKey?                                                   |
 | privateKey         | ByteArray ***OR*** String<br/>(private key) | PrivateKey?                                                  |
 * ##### `Code`
@@ -279,9 +279,9 @@ This package provides the functionality of a secret (symmetric) key generator. [
   // Algorithms: {DSA, DiffieHellman, EC, RSA, RSASSA, RSASSA, X25519, X448, XDH}  
   
   val kpair = KPair.RSA // OR KPair.RSA(keySize)
-  keyPair = kpair.keyPair() // return KeyPair
-  key = kpair.keyPairAsByteArray() // return key as Pair<ByteArray, ByteArray>?
-  key = kpair.keyPairAsString() // return key as Pair<String, String>?
+  keyPair = kpair.pairKey() // return KeyPair
+  key = kpair.pairBytes() // return key as Pair<ByteArray, ByteArray>?
+  key = kpair.pairString() // return key as Pair<String, String>?
   ```
 
   
