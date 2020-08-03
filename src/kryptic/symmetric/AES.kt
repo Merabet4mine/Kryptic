@@ -125,17 +125,3 @@ class AES256 : KSymmetric {
     }
 
 }
-
-
-class X() : KSymmetric("AES", "CBC", "PKCS7", 16, 0){
-    init {
-        key = "1234567890123456".toByteArray()
-        iv = "1234567890123456".toByteArray()
-    }
-}
-
-fun main(args: Array<String>) {
-
-    X().encrypt("amine")
-
-}
