@@ -1,4 +1,4 @@
-![cover](logo.svg)
+<img src="logo.svg" alt="cover" style="height:160px; float: left;" />
 
 
 
@@ -237,10 +237,10 @@ This package provides the functionality of a secret (symmetric) key generator. [
 | Method    | Args type                 | Return type |
 | --------- | ------------------------- | ----------- |
 | invoke    | String (*algorithm name*) | *KGene?*    |
-| invoke    | Int (Key size)            | *KGene?*    |
-| secretKey | /                         | SecretKey?  |
-| byteArray | /                         | ByteArray?  |
-| string    | /                         | String      |
+| size      | Int (Key size)            | *KGene?*    |
+| keySecret | /                         | SecretKey?  |
+| keyBytes  | /                         | ByteArray?  |
+| keyString | /                         | String      |
 
 * ##### `Code`
 
@@ -262,15 +262,15 @@ This package provides the functionality of a secret (symmetric) key generator. [
 
 #### *KPair*
 
-| Method             | Args type                                   | Return type                                                  |
-| ------------------ | ------------------------------------------- | ------------------------------------------------------------ |
-| invoke             | String (*algorithm name*)                   | *KPair?*                                                     |
-| invoke             | Int (Key size)                              | *KPair?*                                                     |
-| pairKey            | /                                           | KeyPair?                                                     |
-| pairBytes          | /                                           | **Pair**<ByteArray, ByteArray>?<br>*Pair*(`publicKey`, `privateKey`) |
-| pairString         | /                                           | **Pair**<String, String>?<br/>*Pair*(`publicKey`, `privateKey`) |
-| publicKey          | ByteArray ***OR*** String<br>(public key)   | PublicKey?                                                   |
-| privateKey         | ByteArray ***OR*** String<br/>(private key) | PrivateKey?                                                  |
+| Method     | Args type                                   | Return type                                                  |
+| ---------- | ------------------------------------------- | ------------------------------------------------------------ |
+| invoke     | String (*algorithm name*)                   | *KPair?*                                                     |
+| size       | Int (Key size)                              | *KPair?*                                                     |
+| pairKey    | /                                           | KeyPair?                                                     |
+| pairBytes  | /                                           | **Pair**<ByteArray, ByteArray>?<br>*Pair*(`publicKey`, `privateKey`) |
+| pairString | /                                           | **Pair**<String, String>?<br/>*Pair*(`publicKey`, `privateKey`) |
+| publicKey  | ByteArray ***OR*** String<br>(public key)   | PublicKey?                                                   |
+| privateKey | ByteArray ***OR*** String<br/>(private key) | PrivateKey?                                                  |
 * ##### `Code`
 
   ```kotlin
@@ -288,6 +288,5 @@ This package provides the functionality of a secret (symmetric) key generator. [
   
   
 ----
-  
-I hope it is a useful library for Java and Kotlin programmers.
 
+I hope it is a useful library for Java and Kotlin programmers.
