@@ -21,21 +21,3 @@ class RSA : KAsymmetric {
 
 
 }
-
-
-fun main() {
-
-
-    val keyPair = KPair.RSA.pairString()
-    val data = "Amine--"
-
-    println(keyPair!!.first)
-    println(keyPair.second)
-
-    val rsa = RSA()// .key(keyPair)
-
-    val e = rsa.publicKey(keyPair.first).encryptToString(data)
-    println((e!!))
-    val d = rsa.privateKey(keyPair.second).decryptToString(e)
-    println((d!!))
-}
