@@ -36,7 +36,7 @@ class AES128 : KSymmetric {
     companion object {
 
         operator fun invoke() = ECB
-        val ECB get() = AES128("ECB", "PKCS5Padding", 0)
+        val ECB get() = AES128("ECB", "PKCS1Padding", 0)
         val CBC get() = AES128("CBC", "PKCS5Padding", 16)
         val CFB get() = AES128("CFB", "PKCS5Padding", 16)
         val OFB get() = AES128("OFB", "PKCS5Padding", 16)
@@ -123,5 +123,19 @@ class AES256 : KSymmetric {
         iv = iv16Byte
         return this
     }
+
+}
+
+
+class X() : KSymmetric("AES", "CBC", "PKCS7", 16, 0){
+    init {
+        key = "1234567890123456".toByteArray()
+        iv = "1234567890123456".toByteArray()
+    }
+}
+
+fun main(args: Array<String>) {
+
+    X().encrypt("amine")
 
 }

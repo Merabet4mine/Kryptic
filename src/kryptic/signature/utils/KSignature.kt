@@ -19,7 +19,7 @@ abstract class KSignature : Kryptic {
     fun sign(data:ByteArray) : Pair<ByteArray, KeyPair>? {
         return try {
             val signature = Signature.getInstance(sig_algorithm)
-            val keyPair = KPair(key_algorithm)?.keyPair() ?: return null
+            val keyPair = KPair(key_algorithm)?.pairKey() ?: return null
             signature.initSign(keyPair.private)
             signature.update(data)
             val digitalSignature = signature.sign()
