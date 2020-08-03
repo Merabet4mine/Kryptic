@@ -1,4 +1,4 @@
-<img src="logo.svg" alt="cover" style="height:160px; float: left;" />
+<img src="logo.svg" alt="cover" style="height:120px; float: left;" />
 
 
 
